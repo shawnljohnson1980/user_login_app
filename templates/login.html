@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Login and Registration</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static '/css/styles.css' %}">
+</head>
+
+
+<body>
+    <nav class="navbar navbar-light navbar-expand-md shadow">
+        <div class="container-fluid"><a class="navbar-brand text-white" href="#">Welcome to The Wall&nbsp;</a><button
+                data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle
+                    navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="navbar-nav">
+                    <li class="nav-item"></li>
+                    <li class="nav-item"></li>
+                    <li class="nav-item"></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container mt-5">
+        <h1 class="shadow"></h1>
+        <div class="row">
+            <div class="col-xl-6">
+                <form class="border-dark shadow p-3" action="/user/register" method="POST">
+                    {% for message in messages %}
+                    <p>{{ message }}</p>
+                    {% endfor %}
+                    {% csrf_token %}
+                    <p class="text-white border-rider">Register</p>
+                    <div class="form-group"><label>First Name</label><input class="form-control" type="text"
+                            placeholder="First Name" name="first_name"> </div>
+                    <div class="form-group"><label>Last Name</label><input class="form-control" type="text"
+                            placeholder="Last Name" name="last_name"></div>
+                    <div class="form-group"><label>Email Address</label><input class="form-control" type="email"
+                            placeholder="Eamil address" name="email"></div>
+                    <div class="form-group"><label>Password</label><input class="form-control" type="password"
+                            placeholder="Password" name="password"></div>
+                    <div class="form-group"><label>Confirm Password</label><input class="form-control" type="password"
+                            placeholder="Password" name="confirm_password"></div>
+                    <div class="form-group text-right"><button class="btn btn-dark shadow"
+                            type="submit">Register</button></div>
+                </form>
+            </div>
+            <div class="col">
+                <form class="border-dark shadow p-3" action="user/login" method="POST">
+                    {% csrf_token %}
+                    {% for message in messages %}
+                    <p>{{ message }}</p>
+                    {% endfor %}
+                    <p class="text-white border-rider"> Log in</p>
+                    <div class="form-group"><label class="mt-5">Email</label><input class="form-control" type="email"
+                            placeholder="Email Address" name="email"></div>
+                    <div class="form-group"><label>Password</label><input class="form-control" type="password"
+                            placeholder="Password" name="password"></div>
+                    <div class="form-group text-right"><button class="btn btn-dark shadow" type="submit"><a
+                                href='/user/login'></a>Login</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="{% static '/js/jquery.min.js' %}"></script>
+    <script src="{% static '/bootstrap/js/bootstrap.min.js' %}"></script>
+</body>
+
+</html>
